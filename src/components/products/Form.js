@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Table from './Table'
+import Item from './Item'
 
 export default class Form extends Component {
   constructor(){
@@ -9,14 +10,7 @@ export default class Form extends Component {
     }
   }
 
-  // onChange = e => {
-  //   this.setState({ [e.target.id]: e.targe.value })
-  // }
 
-  // handleClick = () =>{
-  //   this.handleSubmit()
-  //   // this.props.addCustomer(this.state.customer)
-  // }
 
   handleSubmit = (e) => {
     e.preventDefault()
@@ -32,7 +26,7 @@ export default class Form extends Component {
         }
       }, () => {
         this.props.addCustomer(this.state.customer)
-        console.log(this.state.customer)
+        // console.log(this.state.customer)
       })
     }
   }
@@ -42,7 +36,9 @@ export default class Form extends Component {
 
     const { suburbs, materials,  colors } = this.props
 
-    // console.log(colors)
+    const { customer } = this.state
+
+    
 
     let color = colors ? Object.keys(colors) : null
 
@@ -50,7 +46,6 @@ export default class Form extends Component {
 
     let suburb = suburbs ? Object.keys(suburbs) : null
 
-    // console.log(material)
 
     let optionColor = color ? color.map(c =>{
       return <option key={c} value={ c }>{ c }</option>
@@ -63,6 +58,9 @@ export default class Form extends Component {
     let optionSuburb = suburb ? suburb.map(s =>{
       return <option key={ s } value={ s }>{ s }</option>
     }) : null
+
+
+
 
     return (
       <React.Fragment>
@@ -91,6 +89,13 @@ export default class Form extends Component {
                 { optionColor }
               </select>
             </div>
+
+             { customer != '' ?
+                <div className="top32 col-md-4">
+                  <Item items={customer} />
+                </div> 
+                : null
+              }
           </div>
 
           <div className="top60">
@@ -109,7 +114,6 @@ export default class Form extends Component {
               <button type="submit" className="btn btn-outline-primary">Add</button>
             </div>
           </div>
-
 
         </form>
         

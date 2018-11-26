@@ -4,7 +4,6 @@ import Form from './Form'
 
 export default class Dashboard extends Component {
   state = {
-    order: [],
     categories: [],
     customer: []
   }
@@ -57,14 +56,6 @@ export default class Dashboard extends Component {
     let materials = categories.map(cat => {
       return Object.values(cat)[2]
     })
-
-    // console.log(colors[0])
-    // console.log(suburbs[0])
-
-    // let item = customer.map(c =>{
-    //   console.log(c ? c : null)
-      
-    // })
 
     return (
 
