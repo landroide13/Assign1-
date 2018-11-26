@@ -1,6 +1,21 @@
 import React from 'react'
 
-const Table = () => {
+const Table = (props) => {
+
+  const { orders, addOrders } = props
+
+  let item = orders.map(o =>{
+    return (
+      <tr>
+        <td>{ o.room }</td>
+        <td>{ o.length }</td>
+        <td>{ o.width }</td>
+        <td>{ o.pleats }</td>
+        <td>{ o.style }</td>
+        <td>{ o.notes }</td>
+      </tr>
+    )
+  })
 
   return (
     <React.Fragment>
@@ -26,6 +41,7 @@ const Table = () => {
             <td>In Rose And Red</td>
             <td><button type="button" className="btn btn-sm btn-danger">X</button></td>
           </tr>
+          { item ? item : null}
           <tr>
             <td></td>
             <td></td>
@@ -33,7 +49,7 @@ const Table = () => {
             <td></td>
             <td></td>
             <td></td>
-            <td><button type="button" className="btn btn-sm btn-success"> + </button></td>
+            <td><button type="button" className="btn btn-sm btn-success" onClick={addOrders} > + </button></td>
           </tr>
         </tbody>
       </table>

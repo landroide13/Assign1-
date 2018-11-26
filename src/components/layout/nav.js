@@ -6,13 +6,13 @@ const nav = () => {
     <React.Fragment>
 
       
-      <nav className="navbar navbar-light bg-primary white">
-        <a className="navbar-brand" href="/">
-          <img src="/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" className="d-inline-block align-top" alt="" />
-          LOGO
+      <nav className="navbar navbar-light bg-light">
+        <a className="navbar-brand white" href="/">
+          <img src="/" width="30" height="30" className="d-inline-block align-top" alt="" />
+           Curtains Store
         </a>
         <span className="navbar-text">
-          Users Avatar
+          John Doe
         </span>
       </nav>
       

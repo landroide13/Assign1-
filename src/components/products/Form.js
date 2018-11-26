@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import uuid from 'uuid'
 import Table from './Table'
 import Item from './Item'
 
@@ -6,8 +7,19 @@ export default class Form extends Component {
   constructor(){
     super()
     this.state = {
-      customer: []
+      customer: [],
+      orders: [],
+      order: {id: uuid.v4(), room: 'Master Room', length: '1,2 M', width: '5 M', pleats: 'Double', style: 'Blind', notes: 'Pinky nad Black' }
     }
+  }
+
+
+  handleOrders = () =>{
+    let orders = this.state.orders
+    const order = this.state.order
+    orders.push(order)
+    this.setState({ orders })
+    console.log(this.state.orders)
   }
 
 
@@ -15,10 +27,12 @@ export default class Form extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     if(this.refs.name.value === ''){
-      console.log('You must includ a valid name..')
+      // console.log('You must includ a valid name..')
+      alert('You must include a valid name..')
     }else{
       this.setState({
         customer:{
+          id: uuid.v4(),
           name: this.refs.name.value,
           suburb: this.refs.suburb.value,
           material: this.refs.material.value,
@@ -36,9 +50,7 @@ export default class Form extends Component {
 
     const { suburbs, materials,  colors } = this.props
 
-    const { customer } = this.state
-
-    
+    const { customer, orders } = this.state
 
     let color = colors ? Object.keys(colors) : null
 
@@ -58,8 +70,6 @@ export default class Form extends Component {
     let optionSuburb = suburb ? suburb.map(s =>{
       return <option key={ s } value={ s }>{ s }</option>
     }) : null
-
-
 
 
     return (
@@ -92,7 +102,7 @@ export default class Form extends Component {
 
              { customer != '' ?
                 <div className="top32 col-md-4">
-                  <Item items={customer} />
+                  <Item items={customer}  />
                 </div> 
                 : null
               }
@@ -100,7 +110,7 @@ export default class Form extends Component {
 
           <div className="top60">
             <h4>Curtains</h4>
-            <Table />
+            <Table orders={orders} addOrders={this.handleOrders} />
           </div>
 
           <div className="row top60">
