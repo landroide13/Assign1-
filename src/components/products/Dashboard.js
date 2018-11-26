@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import Table from './Table'
 import { API_URL } from '../../config'
 import Form from './Form'
 
 export default class Dashboard extends Component {
   state = {
     order: [],
-    categories: []
+    categories: [],
+    customer: []
   }
 
   
@@ -33,6 +33,15 @@ export default class Dashboard extends Component {
     })
   }
 
+  handleItem = (item) =>{
+    let customer = this.state.customer
+    customer.push(item)
+    this.setState({ customer })
+    // console.log('custumer' + this.state.customer )
+  }
+
+
+
   render() {
 
     const { categories } = this.state 
@@ -52,32 +61,18 @@ export default class Dashboard extends Component {
     // console.log(colors[0])
     // console.log(suburbs[0])
 
+    // let item = customer.map(c =>{
+    //   console.log(c ? c : null)
+      
+    // })
 
     return (
 
       <React.Fragment>
 
-        <Form suburbs={suburbs[0]} colors={colors[0]} materials={materials[0]} />
+        <Form suburbs={suburbs[0]} colors={colors[0]} materials={materials[0]} 
+               addCustomer={this.handleItem} />
 
-        <div className="top60">
-          <h4>Curtains</h4>
-
-          <Table />
-        </div>
-
-        <div className="row top60">
-          <div className="col-sm">
-            <button type="button" className="btn btn-outline-primary">Back</button>
-          </div>
-          <div className="col-sm">
-            <button type="button" className="btn btn-outline-primary">Save All</button>
-          </div>
-          <div className="col-sm">
-            <button type="button" className="btn btn-outline-primary">Add</button>
-          </div>
-        </div>
-
-        
       </React.Fragment>
     )
   }

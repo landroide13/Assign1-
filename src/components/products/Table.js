@@ -26,6 +26,15 @@ const Table = () => {
             <td>In Rose And Red</td>
             <td><button type="button" className="btn btn-sm btn-danger">X</button></td>
           </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><button type="button" className="btn btn-sm btn-success"> + </button></td>
+          </tr>
         </tbody>
       </table>
       
