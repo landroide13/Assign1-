@@ -4,7 +4,15 @@ export default function Item(props) {
 
   const { items } = props
 
-  console.log(items)
+  // let onDelete = (id) =>{
+  //   deleteCustomer(id)
+  // }
+
+  let added = (item) =>{
+    alert('Checking out Order for Mr/Ms: ' + items.name)
+  }
+
+  // console.log(items)
   
   return (
     <React.Fragment>
@@ -20,8 +28,7 @@ export default function Item(props) {
           <li className="list-group-item">Color: {items.color}</li>
         </ul>
         <div className="card-body text-center">
-          <a href="/" className="btn btn-sm btn-success">Check out</a>
-          <a href="/" className="btn btn-sm btn-danger">Delete</a>
+          <a href="/" className="btn btn-sm btn-success" onClick={added}>Check out</a>
         </div>
       </div>
       

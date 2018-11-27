@@ -2,17 +2,22 @@ import React from 'react'
 
 const Table = (props) => {
 
-  const { orders, addOrders } = props
+  const { orders, addOrders, handleDelete } = props
+
+  let  onDelete = (id) =>{
+    handleDelete(id)
+  }
 
   let item = orders.map(o =>{
     return (
-      <tr>
+      <tr key={o.id}>
         <td>{ o.room }</td>
         <td>{ o.length }</td>
         <td>{ o.width }</td>
         <td>{ o.pleats }</td>
         <td>{ o.style }</td>
         <td>{ o.notes }</td>
+        <td><button type="button" className="btn btn-sm btn-danger" onClick={onDelete.bind(o.id)}>X</button></td>
       </tr>
     )
   })
@@ -39,7 +44,7 @@ const Table = (props) => {
             <td>Single/ Double</td>
             <td>Curtain/blind</td>
             <td>In Rose And Red</td>
-            <td><button type="button" className="btn btn-sm btn-danger">X</button></td>
+            <td></td>
           </tr>
           { item ? item : null}
           <tr>

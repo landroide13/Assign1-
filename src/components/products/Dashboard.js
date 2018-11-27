@@ -9,7 +9,8 @@ export default class Dashboard extends Component {
   }
 
   
-  componentWillMount(){
+  // GET Getting DATA from The API
+  componentDidMount(){
     this.fetchData();
   }
 
@@ -32,12 +33,20 @@ export default class Dashboard extends Component {
     })
   }
 
-  handleItem = (item) =>{
+  // Adding New Customer
+  handleItem = (cust) =>{
     let customer = this.state.customer
-    customer.push(item)
+    customer.push(cust)
     this.setState({ customer })
-    // console.log('custumer' + this.state.customer )
   }
+
+  // customerDelete = (id) =>{
+  //   let customer = this.state.customer 
+  //   let idx = customer.findIndex(ix => ix.id === id)
+  //   customer.splice(idx, 1)
+  //   console.log(customer)
+  //   this.setState({ customer })
+  // }
 
 
 
@@ -62,7 +71,7 @@ export default class Dashboard extends Component {
       <React.Fragment>
 
         <Form suburbs={suburbs[0]} colors={colors[0]} materials={materials[0]} 
-               addCustomer={this.handleItem} />
+               addCustomer={this.handleItem}  />
 
       </React.Fragment>
     )

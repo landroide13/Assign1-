@@ -7,9 +7,9 @@ export default class Form extends Component {
   constructor(){
     super()
     this.state = {
-      customer: [],
+      newCustomer: [],
       orders: [],
-      order: {id: uuid.v4(), room: 'Master Room', length: '1,2 M', width: '5 M', pleats: 'Double', style: 'Blind', notes: 'Pinky nad Black' }
+      order: {id: uuid.v4(), room: 'Master Room', length: '1,2 M', width: '5 M', pleats: 'Double', style: 'Blind', notes: 'Pinky and Black' }
     }
   }
 
@@ -19,27 +19,38 @@ export default class Form extends Component {
     const order = this.state.order
     orders.push(order)
     this.setState({ orders })
-    console.log(this.state.orders)
   }
 
+  handleDelete = (id) =>{
+    let orders = this.state.orders
+    let idx = orders.findIndex(ix => ix.id === id)
+    orders.splice(idx, 1)
+    this.setState({ orders })
+  }
 
+  // deleteCustomer = (id) =>{
+  //   this.props.deleteCustomer(id)
+  // }
 
+  
   handleSubmit = (e) => {
     e.preventDefault()
     if(this.refs.name.value === ''){
       // console.log('You must includ a valid name..')
-      alert('You must include a valid name..')
+      alert('You must include a valid Customer name..')
     }else{
       this.setState({
-        customer:{
+        newCustomer:
+        {
           id: uuid.v4(),
           name: this.refs.name.value,
           suburb: this.refs.suburb.value,
           material: this.refs.material.value,
           color: this.refs.color.value,
         }
+      
       }, () => {
-        this.props.addCustomer(this.state.customer)
+        this.props.addCustomer(this.state.newCustomer)
         // console.log(this.state.customer)
       })
     }
@@ -50,7 +61,7 @@ export default class Form extends Component {
 
     const { suburbs, materials,  colors } = this.props
 
-    const { customer, orders } = this.state
+    const { newCustomer, orders } = this.state
 
     let color = colors ? Object.keys(colors) : null
 
@@ -100,9 +111,9 @@ export default class Form extends Component {
               </select>
             </div>
 
-             { customer != '' ?
+             { newCustomer != '' ?
                 <div className="top32 col-md-4">
-                  <Item items={customer}  />
+                  <Item items={newCustomer}  />
                 </div> 
                 : null
               }
@@ -110,7 +121,7 @@ export default class Form extends Component {
 
           <div className="top60">
             <h4>Curtains</h4>
-            <Table orders={orders} addOrders={this.handleOrders} />
+            <Table orders={orders} addOrders={this.handleOrders} handleDelete={this.handleDelete} />
           </div>
 
           <div className="row top60">
@@ -118,7 +129,7 @@ export default class Form extends Component {
               <button type="button" className="btn btn-outline-primary">Back</button>
             </div>
             <div className="col-sm">
-              <button type="button" className="btn btn-outline-success">Save All</button>
+              <button type="button" href="/" className="btn btn-outline-success">Save All</button>
             </div>
             <div className="col-sm">
               <button type="submit" className="btn btn-outline-primary">Add</button>
