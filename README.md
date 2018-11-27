@@ -25,3 +25,14 @@ You are required to create an online ordering portal page. Users should be able 
 - Creating art and other assets is not required, use placeholders as necessary
 - There is no need to implement more than this single page, nor to support multiple different orders at the same time
 - There is API to support saving and reloading the page without losing data, it will return anything you post to it
+
+## Developer Coments
+
+- Press "Add" to add a New Customer.
+- Press the Green Button on the last row on the table for add a new row(loads aswell some dummy data).
+- Press the red button next to every row, to delete. 
+- The options are loaded from the given API.
+- Press "check out" to add a new Customer and reload the page.
+- To add a new Customer you must enter a name(basic validation).
+
+
